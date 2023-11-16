@@ -482,8 +482,8 @@ func (r *Reflector) list(stopCh <-chan struct{}) error {
 	panicCh := make(chan interface{}, 1)
 	go func() {
 		defer func() {
-			if r := recover(); r != nil {
-				panicCh <- r
+			if rv := recover(); rv != nil {
+				panicCh <- rv
 			}
 		}()
 		// Attempt to gather list in chunks, if supported by listerWatcher, if not, the first
